@@ -1,0 +1,9 @@
+.idea
+.gradle
+build
+.dockerignore
+.gitignore
+Makefile
+src/*/build
+apps/main/resources/.env.local
+apps/main/resources/.env.*.local

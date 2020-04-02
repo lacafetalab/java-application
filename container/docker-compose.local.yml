@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: lacafetalab-java_ddd_skeleton-postgres
+    image: postgres:11.6
+    restart: always
+    ports:
+      - 2332:5432
+    environment:
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d/
+
+
+#  pgadmin:
+#    image: dpage/pgadmin4
+#    restart: always
+#    depends_on:
+#      - postgres
+#    ports:
+#      - 5050:80
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+#      PGADMIN_DEFAULT_PASSWORD: admin
+
+#  rabbitmq:
+#    container_name: lacafetalab-java_ddd_skeleton-rabbitmq
+#    image: 'rabbitmq:3.7-management'
+#    restart: unless-stopped
+#    ports:
+#      - 5672:5672
+#      - 15672:15672
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=lacafetalab
+#      - RABBITMQ_DEFAULT_PASS=caf3ta
+
+#  elasticsearch:
+#    container_name: lacafetalab-java_ddd_skeleton-elasticsearch
+#    image: 'elasticsearch:6.8.4'
+#    restart: unless-stopped
+#    ports:
+#      - 9300:9300
+#      - 9200:9200
+#    environment:
+#      - discovery.type=single-node
+

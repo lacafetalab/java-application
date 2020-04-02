@@ -1,28 +1,37 @@
-.PHONY: all build test ping-mysql
+.DEFAULT_GOAL := help
 
-all: build
+## GENERAL ##
+OWNER 			= lacafetalab
+SERVICE_NAME 	= java-ddd-skeleton
 
-up:
-	@docker-compose up -d
 
-build:
-	@./gradlew build --warning-mode all
+## RESULT_VARS ##
+ENV 			 ?= dev
+PROJECT_NAME      = $(OWNER)-$(SERVICE_NAME)
+export IMAGE_JAVA = $(PROJECT_NAME)-java
 
-run-tests:
-	@./gradlew test --warning-mode all
+build: ## build image node : make build
+	docker build -f container/dev/Dockerfile -t $(IMAGE_JAVA):latest application
 
-test:
-	@docker exec codelytv-ddd_skeleton-java ./gradlew test --warning-mode all
+install: ## instala todas las dependencias del proyecto : make install
+	@make build
 
-run:
-	@./gradlew :run
-	
-ping-mysql:
-	@docker exec codelytv-java_ddd_skeleton-mysql mysqladmin --user=root --password= --host "127.0.0.1" ping --silent
+test: ## Ejecuta el test : make test
+	docker-compose -f container/docker-compose.yml run --rm java
 
-# Start the app
-start-mooc_backend:
-	@./gradlew :run --args='mooc_backend server'
+console: ## ejecuta la consola de la imagen node: make console a="param"
+	@docker run --rm -t -v ${PWD}/application:/application $(IMAGE_TEST) ${a}
 
-start-backoffice_frontend:
-	@./gradlew :run --args='backoffice_frontend server'
+## Target Docker tools ##
+bash: ## Execute migrate : make migrate
+	docker run -it $(IMAGE_JAVA):latest ls -la src/analytics
+
+## Target Docker tools ##
+docker-kill: ## Execute migrate : make migrate
+	docker rm -f $$(docker ps -aq)
+
+## Target Help ##
+help:
+	@printf "\033[31m%-16s %-59s %s\033[0m\n" "Target" "Help" "Usage"; \
+	printf "\033[31m%-16s %-59s %s\033[0m\n" "------" "----" "-----"; \
+	grep -hE '^\S+:.*## .*$$' $(MAKEFILE_LIST) | sed -e 's/:.*##\s*/:/' | sort | awk 'BEGIN {FS = ":"}; {printf "\033[32m%-16s\033[0m %-58s \033[34m%s\033[0m\n", $$1, $$2, $$3}'
