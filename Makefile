@@ -17,6 +17,7 @@ install: ## instala todas las dependencias del proyecto : make install
 	@make build
 
 test: ## Ejecuta el test : make test
+	@make build
 	docker-compose -f container/docker-compose.yml run --rm java
 
 ## Target Docker tools ##
