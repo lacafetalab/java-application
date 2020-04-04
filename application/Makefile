@@ -14,8 +14,8 @@ tests:
 start-mooc_backend:
 	@./gradlew :run --args='mooc_backend server'
 
-start-backoffice_frontend:
-	@./gradlew :run --args='backoffice_frontend server'
+start-backoffice_backend:
+	@./gradlew :run --args='backoffice_backend server'
 
 ## Target Help ##
 help:

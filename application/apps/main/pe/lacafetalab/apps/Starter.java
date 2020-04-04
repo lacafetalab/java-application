@@ -5,7 +5,6 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.context.ConfigurableApplicationContext;
 import pe.lacafetalab.apps.backoffice.backend.BackofficeBackendApplication;
 import pe.lacafetalab.apps.mooc.backend.MoocBackendApplication;
-import pe.lacafetalab.apps.backoffice.frontend.BackofficeFrontendApplication;
 import pe.lacafetalab.shared.infrastructure.cli.ConsoleCommand;
 
 import java.util.Arrays;
@@ -69,7 +68,6 @@ public class Starter {
 
         applications.put("mooc_backend", MoocBackendApplication.class);
         applications.put("backoffice_backend", BackofficeBackendApplication.class);
-        applications.put("backoffice_frontend", BackofficeFrontendApplication.class);
 
         return applications;
     }
@@ -79,7 +77,6 @@ public class Starter {
 
         commands.put("mooc_backend", MoocBackendApplication.commands());
         commands.put("backoffice_backend", BackofficeBackendApplication.commands());
-        commands.put("backoffice_frontend", BackofficeFrontendApplication.commands());
 
         return commands;
     }
