@@ -16,8 +16,6 @@ services:
     container_name: lacafetalab-java_ddd_skeleton-java
     image: $IMAGE_JAVA:latest
     restart: unless-stopped
-    ports:
-      - "8080:8080"
     tty: true
     depends_on:
       - postgres

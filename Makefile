@@ -19,12 +19,9 @@ install: ## instala todas las dependencias del proyecto : make install
 test: ## Ejecuta el test : make test
 	docker-compose -f container/docker-compose.yml run --rm java
 
-console: ## ejecuta la consola de la imagen node: make console a="param"
-	@docker run --rm -t -v ${PWD}/application:/application $(IMAGE_TEST) ${a}
-
 ## Target Docker tools ##
 bash: ## Execute migrate : make migrate
-	docker run -it $(IMAGE_JAVA):latest ls -la src/analytics
+	docker run -it $(IMAGE_JAVA):latest bash
 
 ## Target Docker tools ##
 docker-kill: ## Execute migrate : make migrate

@@ -10,5 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
+      - name: Create image java
+        run: make build
+      
       - name: Run the tests
         run: make test
