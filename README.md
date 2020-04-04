@@ -1,13 +1,19 @@
 # ☕ Java DDD Skeleton
+Este proyecto te va a ayudar en la creacion de nuevas aplicaciones java.
 
-## Correr los test 
--  Clonar el repositorio y ejecutar `make test`
 -  Se sigue el estandar de carpetas segun lacafeta
+
+## Comprobar que todo va bien
+
+-  Clonar el repositorio y ejecutar `make test`
 
 ## configuracion 
 Renombrar el archivo 'application/apps/main/resources/.env.local.template -> .env.template' 
 este archivo esta ignorado por git, y es archivo de configuracion del proyecto
 -  `cp apps/main/resorces/.env.local.template .env.template`
+
+Cambiar el nombre del proyecto en el archivo `application/settings.gradle`
+-  `rootProject.name = 'java-ddd-skeleton' ` cambiar  'java-ddd-skeleton' por el nombre de tu proyecto
 
 
 ## Recomendaciones para iniciar el proyecto
